@@ -9,25 +9,30 @@
     <h1 id="counter-output"> counter : 0 </h1>
     <button id="btn-inc"> Inc </button>
     <button id="btn-dec"> Dec </button> 
+    <button id="btn-set"> Set </button>
 
     <script>
         var counterOutput = document.getElementById("counter-output")
         var btnInc = document.getElementById("btn-inc")
         var btnDec = document.getElementById("btn-dec")
+        var btnSet = document.getElementById("btn-set")
         var counter = 0
 
         btnInc.addEventListener('click', ()=> {
-            console.log('click test' + counter)
             counter = counter + 1
             counterOutput.innerText = "counter : " + counter
         })
 
         btnDec.addEventListener('click', ()=> {
-            console.log('click test' + counter)
             counter = counter - 1
             counterOutput.innerText = "counter : " + counter
         })
 
+        // Set 버튼 클릭 시 0으로 초기화
+        btnSet.addEventListener('click', ()=> {
+            counter = 0
+            counterOutput.innerText = "counter : " + counter
+        })
     </script>
 </body>
 </html>
