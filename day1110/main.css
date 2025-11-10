@@ -1,0 +1,69 @@
+/* 요청하신 갈무리 폰트 CDN 불러오기 */
+@import url('https://cdn.jsdelivr.net/npm/galmuri@latest/dist/galmuri.css');
+
+/* 기본 설정 */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0000AA; /* 파란색 배경 */
+    color: #FFFFFF;            /* 흰색 글자 */
+    /* 갈무리 폰트 적용 (Galmuri11 외에도 7, 9, 14 등 사용 가능) */
+    font-family: 'Galmuri11', sans-serif;
+}
+
+/* 정보 텍스트 공통 스타일 */
+.info-text {
+    position: absolute;
+    font-size: 1.2rem;
+    color: #AAAAAA;
+}
+
+/* 우상단 위치 */
+.top-right {
+    top: 20px;
+    right: 20px;
+}
+
+/* 좌하단 위치 */
+.bottom-left {
+    bottom: 20px;
+    left: 20px;
+}
+
+/* 메뉴 컨테이너 */
+.menu-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 큰 제목 */
+.big-test {
+    font-size: 4rem;
+    margin-bottom: 80px;
+    text-align: center;
+    text-shadow: 4px 4px 0px #000000;
+}
+
+/* 메뉴 항목 */
+.mid-test {
+    font-size: 2rem;
+    margin: 20px 0;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+/* 마우스 오버 효과 */
+.mid-test:hover {
+    color: #FFFF00;
+    transform: scale(1.1);
+    text-shadow: 2px 2px 0px #000000;
+}
