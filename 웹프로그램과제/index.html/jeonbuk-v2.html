@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>전북 관광 정보 포털</title>
+    
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
+    
+    <style>
+        /* CSS는 변경된 부분 없이 그대로입니다 */
+        body {
+            font-family: 'Pretendard', sans-serif; 
+            margin: 0;
+            padding: 0;
+            background-color: #f4f9ff; 
+            color: #333; 
+        }
+        header {
+            background-color: #004a99; 
+            color: white;
+            padding: 1rem 2rem;
+            display: flex; 
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        header h1 { margin: 0; font-size: 1.8rem; }
+        header a { color: white; text-decoration: none; }
+        header nav ul { margin: 0; padding: 0; list-style: none; }
+        header nav li { display: inline-block; margin-left: 1.5rem; }
+        header nav a:hover { text-decoration: underline; }
+        main {
+            width: 90%;
+            max-width: 1200px; 
+            margin: 2rem auto; 
+        }
+        .hero-section {
+            background-image: linear-gradient(rgba(0, 74, 153, 0.6), rgba(0, 74, 153, 0.6)), url('https://images.unsplash.com/photo-1571991046123-b1d51d0?q=80&w=1920&auto=format&fit=crop'); 
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            padding: 4rem 2rem;
+            text-align: center;
+            color: white;
+        }
+        .hero-section h2 { font-size: 2.5rem; margin-top: 0; margin-bottom: 1rem; }
+        .search-bar { width: 70%; max-width: 600px; margin: 0 auto; display: flex; }
+        .search-bar input[type="text"] {
+            flex-grow: 1; 
+            padding: 0.8rem 1rem;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px 0 0 5px; 
+        }
+        .search-bar button {
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            border: none;
+            background-color: #e67e22; 
+            color: white;
+            cursor: pointer;
+            border-radius: 0 5px 5px 0; 
+        }
+        .content-section { margin-top: 3rem; }
+        .content-section h3 {
+            font-size: 2rem;
+            color: #004a99; 
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 1.5rem; 
+        }
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08); 
+            overflow: hidden; 
+            transition: transform 0.3s ease; 
+        }
+        .card:hover { transform: translateY(-5px); }
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover; 
+            background-color: #eee; /* 이미지가 없을 경우를 대비한 배경색 */
+        }
+        .card-content { padding: 1.5rem; }
+        .card-content h4 { font-size: 1.3rem; margin-top: 0; margin-bottom: 0.5rem; color: #333; }
+        .card-content p { font-size: 0.95rem; color: #555; margin-bottom: 0; }
+        footer {
+            background-color: #333; 
+            color: #aaa;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+        .no-result {
+            text-align: center; 
+            width: 100%; 
+            font-size: 1.1rem; 
+            color: #555;
+            padding: 2rem;
+        }
+        .results-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        .results-header h3 {
+            font-size: 2rem;
+            color: #004a99;
+            margin: 0;
+            text-align: left;
+        }
+        #close-results-button {
+            padding: 0.6rem 1.2rem;
+            font-size: 0.95rem;
+            border: none;
+            background-color: #6c757d;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        #close-results-button:hover {
+            background-color: #5a6268;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1><a href="#">전북 관광 정보 포털</a></h1>
+        <nav>
+            <ul>
+                <li><a href="#">추천 명소</a></li>
+                <li><a href="#">축제 정보</a></li>
+                <li><a href="#">테마 여행</a></li>
+                <li><a href="#">맛집/숙소</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <h2>"가장 한국적인, 쉼이 있는 곳"</h2>
+            <p>전라북도의 다채로운 매력에 빠져보세요!</p>
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="어떤 여행 정보를 찾으시나요? (예: 전주, 군산, 익산)">
+                <button id="search-button">검색</button>
+            </div>
+        </section>
+
+        
+        <section class="content-section" id="main-content-section">
+            <h3 id="content-title">#전북_테마별_여행지</h3>
+            
+            <div class="card-container" id="card-list">
+                <div class="card">
+                    <img src="jeonju.jpg" alt="전주 한옥마을">
+                    <div class="card-content">
+                        <h4>전통과 역사</h4>
+                        <p>전주 한옥마을, 고창읍성에서 느끼는 시간의 숨결</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="naejangsan.jpg" alt="내장산 단풍">
+                    <div class="card-content">
+                        <h4>아름다운 자연</h4>
+                        <p>내장산, 변산반도, 마이산의 사계절</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="bibimbap.jpg" alt="전주 비빔밥">
+                    <div class="card-content">
+                        <h4>미식의 고장</h4>
+                        <p>전주 비빔밥에서 군산 로컬 맛집까지</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section" id="search-results-section" style="display: none;">
+            <div class="results-header">
+                <h3 id="results-title"></h3>
+                <button id="close-results-button">돌아가기</button>
+            </div>
+            
+            <div class="card-container" id="results-card-list">
+                </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 전북 관광 정보 포털 (Jeonbuk Tourism Portal). All rights reserved.</p>
+        <p>이 웹사이트는 디자인 예시를 위해 제작되었습니다.</p>
+    </footer>
+
+    
+    <script>
+        // 1. 필요한 HTML 요소들을 미리 선택해 둡니다. (동일)
+        const searchButton = document.getElementById("search-button");
+        const searchInput = document.getElementById("search-input");
+        const mainContentSection = document.getElementById("main-content-section");
+        const searchResultsSection = document.getElementById("search-results-section");
+        const resultsTitle = document.getElementById("results-title");
+        const resultsCardList = document.getElementById("results-card-list");
+        const closeResultsButton = document.getElementById("close-results-button");
+
+        
+        // 2. "검색" 버튼 클릭 이벤트
+        searchButton.addEventListener("click", function() {
+            
+            const searchTerm = searchInput.value.trim();
+
+            // 3. 메인 콘텐츠 숨기고, 결과 섹션 보여주기 (동일)
+            mainContentSection.style.display = "none";
+            searchResultsSection.style.display = "block"; 
+
+            // 4. 입력된 값에 따라 '결과 섹션'의 내용을 채웁니다.
+            
+            if (searchTerm === "전주") {
+                resultsTitle.innerText = "#전주_추천_여행지"; 
+                resultsCardList.innerHTML = `
+                    <div class="card">
+                        <img src="jeonju.jpg" alt="전주 한옥마을">
+                        <div class="card-content">
+                            <h4>전주 한옥마을</h4>
+                            <p>700여 채의 한옥이 모여있는 대표적인 명소</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="https://images.unsplash.com/photo-1623821033452-2c6c8e31d3d0?q=80&w=400&h=250&fit=crop" alt="경기전">
+                        <div class="card-content">
+                            <h4>경기전</h4>
+                            <p>태조 이성계의 어진을 모신 아름다운 궁</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="httpsSignature-Pad-0/photo-1627914619389-9b90c01a916a?q=80&w=400&h=250&fit=crop" alt="전주 남부시장">
+                        <div class="card-content">
+                            <h4>전주 남부시장 (야시장)</h4>
+                            <p>활기찬 야시장과 맛있는 먹거리가 가득</p>
+                        </div>
+                    </div>
+                `;
+            } else if (searchTerm === "군산") {
+                // (참고) 군산, 익산 이미지는 Unsplash에서 계속 불러옵니다.
+                resultsTitle.innerText = "#군산_근대역사_여행";
+                resultsCardList.innerHTML = `
+                    <div class="card">
+                        <img src="https...photo-1678432364969-99c8b66b3c6a?q=80&w=400&h=250&fit=crop" alt="군산 초원사진관">
+                        <div class="card-content">
+                            <h4>초원사진관</h4>
+                            <p>'8월의 크리스마스' 촬영지로 유명한 곳</p>
+                        </div>
+                    </div>
+                    ... (이하 생략) ...
+                `;
+            } else if (searchTerm === "익산") {
+                 // (참고) 군산, 익산 이미지는 Unsplash에서 계속 불러옵니다.
+                resultsTitle.innerText = "#찬란한_백제왕도_익산";
+                resultsCardList.innerHTML = `
+                    <div class="card">
+                        <img src="https...photo-1623091433013-63162b70f038?q=80&w=400&h=250&fit=crop" alt="익산 미륵사지">
+                        <div class="card-content">
+                            <h4>미륵사지 (유네스코 세계유산)</h4>
+                            <p>백제 최대의 사찰 터와 장엄한 석탑</p>
+                        </div>
+                    </div>
+                    ... (이하 생략) ...
+                `;
+            } else {
+                // 검색 결과 없음 (동일)
+                resultsTitle.innerText = "#검색 결과";
+                resultsCardList.innerHTML = `<p class="no-result">'${searchTerm}'에 대한 검색 결과가 없습니다. '전주', '군산', '익산' 등으로 검색해보세요.</p>`;
+            }
+        });
+
+        // 5. '돌아가기' 버튼 클릭 이벤트 (동일)
+        closeResultsButton.addEventListener("click", function() {
+            searchResultsSection.style.display = "none";
+            mainContentSection.style.display = "block";
+            searchInput.value = "";
+        });
+
+        // 엔터 키 검색 (동일)
+        searchInput.addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                searchButton.click(); 
+            }
+        });
+
+    </script>
+
+</body>
+</html>

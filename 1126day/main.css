@@ -1,0 +1,64 @@
+body {
+    display: flex;
+    background-color: blue;
+    margin: 0px;
+    padding: 0px;
+    color: white;
+    font-family: 'RoundedFixedsys';    
+    flex-direction: column;
+    height: 100vh;
+}
+
+@font-face {
+    font-family: 'RoundedFixedsys';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff') format('woff');
+    font-weight: normal;
+    font-display: swap;
+}
+
+header {
+    display: flex;
+    padding: 16px;
+    justify-content: flex-end;
+}
+
+footer {
+    display: flex;
+    padding: 16px;
+    justify-content: center;
+}
+
+main {
+    display: flex;
+    flex : 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 폰트 크기 및 스타일 정의 */
+.title, .credit-title {
+    font-size: 64px;
+    margin-bottom: 20px;
+}
+
+.menu-item, .credit-item, .back-button {
+    font-size: 32px;
+    margin: 5px 0;
+    cursor: pointer;
+}
+
+/* 마우스 호버 효과 */
+.menu-item:hover, .back-button:hover {
+    color: yellow;
+}
+
+/* [추가됨] 키보드로 선택되었을 때의 노란색 효과 */
+.menu-item.selected, .back-button.selected {
+    color: yellow;
+}
+
+/* 화면 숨김용 클래스 */
+.hide {
+    display: none !important;
+}

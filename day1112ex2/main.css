@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        /* 1. '옛날 느낌' (레트로/픽셀) 폰트를 <style> 태그 최상단에 정의 */
+        @font-face {
+            font-family: 'DungGeunMo'; /* 폰트 이름 '둥근모' */
+            src: url('https://gcore.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap; /* 폰트 로딩 전략 */
+        }
+
+        /* 2. 기본 Body 및 중앙 정렬 스타일 */
+        body {
+            background-color: dodgerblue; 
+            color: white; 
+            display: flex;
+            justify-content: center; 
+            align-items: center;   
+            min-height: 100vh;     
+            margin: 0;             
+            /* 기본 폰트는 깔끔한 sans-serif 유지 */
+            font-family: sans-serif; 
+        }
+
+        main {
+            text-align: center;
+        }
+
+        /* 3. 레트로 폰트 적용 (타이틀) */
+        .title {
+            font-family: 'DungGeunMo', sans-serif; /* 폰트 적용 */
+            font-size: 2.5em;
+            /* 픽셀 폰트는 font-weight: bold가 잘 적용되지 않을 수 있습니다 */
+            margin-bottom: 20px;
+        }
+
+        /* 4. 레트로 폰트 적용 (메뉴 아이템) */
+        .menu-item {
+            font-family: 'DungGeunMo', sans-serif; /* 폰트 적용 */
+            font-size: 1.5em;
+            margin: 15px 0;
+            cursor: pointer; 
+        }
+
+        .menu-item:hover {
+            opacity: 0.8;
+        }
+
+        /* 5. 상/하단 고정 텍스트 스타일 */
+        #version {
+            position: fixed;
+            top: 10px;
+            right: 15px;
+            font-size: 0.9em;
+            opacity: 0.8; 
+        }
+
+        #copyright {
+            position: fixed;
+            bottom: 10px;
+            left: 15px;
+            font-size: 0.9em;
+            opacity: 0.8; 
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div id="version">version 1.0</div>
+    </header>
+
+    <main>
+        <div class="title">Dungun & Dragons</div>
+        <div class="menu-item" data-action="start">New</div>
+        <div class="menu-item" data-action="load">Load</div>
+        <div class="menu-item" data-action="option">Option</div>
+    </main>
+
+    <footer>
+        <div id="copyright">copyright jj.ac.kr</div>
+    </footer>
+
+    <script type="module">
+        import main from '/.index.js'
+        main();
+    </script>
+</body>
+</html>
